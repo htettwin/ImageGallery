@@ -1,5 +1,6 @@
 ## Requirement
 Following libraries are required to build the gallery:
+
 1. Gulp
 2. SCSS
 
