@@ -4,6 +4,10 @@ Following libraries are required to build the gallery:
 2. SCSS
 
 ## Build
+To set up the required libraries (other than SCSS)
+CMD:: **npm install**
+
+## Build
 To build the files:
 
 CMD:: **gulp**
