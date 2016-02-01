@@ -1,0 +1,227 @@
+$thumbnail-size: 150px;
+$paddle-color: rgba(225, 225, 225, 0.4);
+$paddle-border: 4px solid $paddle-color;
+$paddle-size: 36px;
+$paddle-hover-color: rgba(225, 225, 225, 1);
+$btn-size: 44px;
+$btn-margin: 2em;
+
+@mixin rotate( $num ) {
+    -webkit-transform: rotate($num);
+       -moz-transform: rotate($num);
+            transform: rotate($num);
+}
+
+@mixin transform-origin( $val ) {
+    -webkit-transform-origin: $val;
+       -moz-transform-origin: $val;
+            transform-origin: $val;
+}
+
+@mixin paddleImg() {
+
+    content: '';
+    height: $paddle-size;
+    width: $paddle-size;
+
+    position: absolute;
+    top: 35%;
+
+    @include rotate(45deg);
+    @include transform-origin(center center);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    &.fixed {
+        height: 100%;
+        overflow: hidden;
+    }
+}
+
+#gallery {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    .thumbnail {
+        height: $thumbnail-size;
+        width: $thumbnail-size;
+        position: relative;
+
+        .shim {
+            border: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            display: none;
+
+            background: rgba(0, 0, 0, 0.5 );
+
+            button {
+                color: #fff;
+                border: 1px solid #fff;
+                background: transparent;
+                border-radius: 4px;
+                margin-top: 63px;
+                margin-left: 28px;
+                padding: 5px 16px;
+            }
+        }
+
+        &:hover {
+            .shim {
+                display: block;
+            }
+        }
+    }
+}
+
+.lightbox {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75 );
+
+    .btnCtn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: $btn-size + 16px;
+        text-align: right;
+
+        .close {
+            height: $btn-size;
+            width: $btn-size;
+            border: 0;
+            background: transparent;
+            position: relative;
+            margin-top: 16px;
+            margin-right: $btn-margin;
+
+            &:before, &:after {
+                background-color: $paddle-color;
+                content: '';
+                height: $btn-size;
+                width: 2px;
+                position: absolute;
+                top: 0;
+                left: 22px;
+
+                @include rotate(45deg);
+                @include transform-origin(center center);
+            }
+
+            &:after {
+                @include rotate(-45deg);
+            }
+
+            &:hover {
+                &:before, &:after {
+                    background-color: $paddle-hover-color;
+                }
+            }
+        }
+    }
+
+    .contentCtn {
+        display: table;
+        height: 100%;
+        width: 100%;
+        vertical-align: middle;
+
+        .imageCtn {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+
+            img {
+                width: 100%;
+                max-width: 800px;
+            }
+        }
+
+        .paddle {
+            position: absolute;
+            top: -webkit-calc(50% - 75px);
+            top:    -moz-calc(50% - 75px);
+            top:         calc(50% - 75px);
+            z-index: 2;
+
+            height: 150px;
+            width: 32px;
+            background: transparent;
+            border: 0;
+            border-radius: 4px;
+            outline: 0;
+
+            &.left {
+                left: $btn-margin;
+
+                &:before {
+                    border-left: $paddle-border;
+                    border-bottom: $paddle-border;
+                    left: 10px;
+                    @include paddleImg();
+                }
+
+                &:hover:before {
+                    border-color: $paddle-hover-color;
+                }
+            }
+
+            &.right {
+                right: $btn-margin;
+
+                &:before {
+                    border-right: $paddle-border;
+                    border-top: $paddle-border;
+                    right: 10px;
+                    @include paddleImg();
+                }
+
+                &:hover:before {
+                    border-color: $paddle-hover-color;
+                }
+            }
+
+            &:disabled {
+                opacity: 0;
+            }
+        }
+
+        .infoCtn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            background: rgba( 255, 255, 255, 0.6 );
+            margin: 0;
+            padding: 1em $btn-margin;
+        }
+    }
+
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}

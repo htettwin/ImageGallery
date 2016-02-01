@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  padding: 0; }
+  body.fixed {
+    height: 100%;
+    overflow: hidden; }
+
+#gallery {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: stretch; }
+  #gallery .thumbnail {
+    height: 150px;
+    width: 150px;
+    position: relative; }
+    #gallery .thumbnail .shim {
+      border: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: none;
+      background: rgba(0, 0, 0, 0.5); }
+      #gallery .thumbnail .shim button {
+        color: #fff;
+        border: 1px solid #fff;
+        background: transparent;
+        border-radius: 4px;
+        margin-top: 63px;
+        margin-left: 28px;
+        padding: 5px 16px; }
+    #gallery .thumbnail:hover .shim {
+      display: block; }
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75); }
+  .lightbox .btnCtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: 60px;
+    text-align: right; }
+    .lightbox .btnCtn .close {
+      height: 44px;
+      width: 44px;
+      border: 0;
+      background: transparent;
+      position: relative;
+      margin-top: 16px;
+      margin-right: 2em; }
+      .lightbox .btnCtn .close:before, .lightbox .btnCtn .close:after {
+        background-color: rgba(225, 225, 225, 0.4);
+        content: '';
+        height: 44px;
+        width: 2px;
+        position: absolute;
+        top: 0;
+        left: 22px;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -webkit-transform-origin: center center;
+        -moz-transform-origin: center center;
+        transform-origin: center center; }
+      .lightbox .btnCtn .close:after {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        transform: rotate(-45deg); }
+      .lightbox .btnCtn .close:hover:before, .lightbox .btnCtn .close:hover:after {
+        background-color: #e1e1e1; }
+  .lightbox .contentCtn {
+    display: table;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle; }
+    .lightbox .contentCtn .imageCtn {
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+      position: relative; }
+      .lightbox .contentCtn .imageCtn img {
+        width: 100%;
+        max-width: 800px; }
+    .lightbox .contentCtn .paddle {
+      position: absolute;
+      top: -webkit-calc(50% - 75px);
+      top: -moz-calc(50% - 75px);
+      top: calc(50% - 75px);
+      z-index: 2;
+      height: 150px;
+      width: 32px;
+      background: transparent;
+      border: 0;
+      border-radius: 4px;
+      outline: 0; }
+      .lightbox .contentCtn .paddle.left {
+        left: 2em; }
+        .lightbox .contentCtn .paddle.left:before {
+          border-left: 4px solid rgba(225, 225, 225, 0.4);
+          border-bottom: 4px solid rgba(225, 225, 225, 0.4);
+          left: 10px;
+          content: '';
+          height: 36px;
+          width: 36px;
+          position: absolute;
+          top: 35%;
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          transform: rotate(45deg);
+          -webkit-transform-origin: center center;
+          -moz-transform-origin: center center;
+          transform-origin: center center; }
+        .lightbox .contentCtn .paddle.left:hover:before {
+          border-color: #e1e1e1; }
+      .lightbox .contentCtn .paddle.right {
+        right: 2em; }
+        .lightbox .contentCtn .paddle.right:before {
+          border-right: 4px solid rgba(225, 225, 225, 0.4);
+          border-top: 4px solid rgba(225, 225, 225, 0.4);
+          right: 10px;
+          content: '';
+          height: 36px;
+          width: 36px;
+          position: absolute;
+          top: 35%;
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          transform: rotate(45deg);
+          -webkit-transform-origin: center center;
+          -moz-transform-origin: center center;
+          transform-origin: center center; }
+        .lightbox .contentCtn .paddle.right:hover:before {
+          border-color: #e1e1e1; }
+      .lightbox .contentCtn .paddle:disabled {
+        opacity: 0; }
+    .lightbox .contentCtn .infoCtn {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.6);
+      margin: 0;
+      padding: 1em 2em; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0; }
