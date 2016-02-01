@@ -5,6 +5,7 @@ Following libraries are required to build the gallery:
 
 ## Build
 To set up the required libraries (other than SCSS)
+
 CMD:: **npm install**
 
 ## Build
